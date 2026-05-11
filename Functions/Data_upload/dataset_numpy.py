@@ -20,43 +20,27 @@ class User_Case_Dataset_NumPy:
             data_id[2] == imu_2
             data_id[3] == imu_3
         
-        for tool_labes == 1 and tool_labels == 2:
-            data_id = [0, 1, 2]
-            data_id[0] = accelerometer
-            data_id[1] = gravity
-            data_id[2] = gyroscope
+        for tool_labes == 1: data_id=[0]
 
     data legend:
-        imu seg:
+        data:
             seg[:, :, 0] -> timestamp_ns (ns=nano seconds)
-            seg[:, :, 1] -> angular velocity x
-            seg[:, :, 2] -> angular velocity y
-            seg[:, :, 3] -> angular velocity z
-            seg[:, :, 4] -> acceleration x
-            seg[:, :, 5] -> acceleration y
-            seg[:, :, 6] -> acceleration z
-            seg[:, :, 7] -> gravity x
-            seg[:, :, 8] -> gravity y
-            seg[:, :, 9] -> gravity z
+            seg[:, :, 1] -> angular velocity x(wx)
+            seg[:, :, 2] -> angular velocity y (wy)
+            seg[:, :, 3] -> angular velocity z (wx)
+            seg[:, :, 4] -> acceleration x (ax)
+            seg[:, :, 5] -> acceleration y (ay)
+            seg[:, :, 6] -> acceleration z (az)
+            seg[:, :, 7] -> gravity x (gx)
+            seg[:, :, 8] -> gravity y (gy)
+            seg[:, :, 9] -> gravity z (gz)
             seg[:, :, 10] -> time_ms_loc (local time in milliseconds)
-            seg[:, :, 11] -> time of current segment
         
-        gyro and acc and gravity:
-            seg[:, :, 0] ->  index pandas
-            seg[:, :, 1] ->  timestap_ns
-            seg[:, :, 2] ->  seconds_elapsed
-            seg[:, :, 3] ->  z
-            seg[:, :, 4] ->  y
-            seg[:, :, 5] ->  z
-            seg[:, :, 6] ->  time_ms_loc
-            seg[:, :, 7] ->  time of current segment
-           
-
     input:
         root_dir = folder with all segments 
 
     return:
-            data: numpy.array size (n, 70, x)
+            data: numpy.array
             label user
             label case
             label tool
