@@ -54,22 +54,17 @@ class User_Case_Dataset_NumPy:
 
     input:
         root_dir = folder with all segments 
-        goal = "train" or "test", for goal = "train" phase can be "train" or validation
-        preload = False, preload all the segments and concatenate them.
 
     return:
-        if preload == False:
-            data: torch.tensor size (n, 70, x)
+            data: numpy.array size (n, 70, x)
             label user
             label case
             label tool
             label data_id
-        if prelload == True: same but concatenate
     '''
-    def __init__(self, root_dir, transform=None, preload=False):
+    def __init__(self, root_dir):
         # Ensure root_dir is a Path object so the '/' operator works
         self.root_dir = Path(root_dir)
-        self.transform = transform
 
         self.users = sorted(os.listdir(self.root_dir))
         self.users_to_idx = {user: idx for idx, user in enumerate(self.users)}
@@ -144,64 +139,14 @@ class User_Case_Dataset_NumPy:
                         self.tool_labels.append(self.instrument_to_idx[user][case][sensor])
                         self.data_ids.append(self.data_type_to_idx[user][case][sensor][data])
 
-        if preload:
-            self.all_data, self.all_users, self.all_cases, self.all_instrument, self.all_ids = self._preload_all_data()
-
     def __len__(self):
         return len(self.data_paths)
 
-    def _preload_all_data(self):
-        all_data = []
-        all_users = []
-        all_cases = []
-        all_tools = []
-        all_data_type = []
-
-        for data_path, user_label, case_label, tool_label, data_id in zip(
-            self.data_paths, self.user_labels, self.case_labels, self.tool_labels, self.data_ids
-        ):
-            if tool_label > 1:
-                continue
-            else:
-                if "Sensor_Logger" in data_path.parts:
-                    print(f"Loading: {data_path}")
-                else:
-                    
-                    pass 
-                
-                
-                data_all = pd.read_csv(data_path, index_col=0)
-                data_values = data_all.values 
-
-            
-            n_samples = data_values.shape[0]
-
-            
-            all_data.append(data_values)
-            
-            
-            all_users.append(np.full((n_samples,), user_label, dtype=np.int64))
-            all_cases.append(np.full((n_samples,), case_label, dtype=np.int64))
-            all_tools.append(np.full((n_samples,), tool_label, dtype=np.int64))
-            all_data_type.append(np.full((n_samples,), data_id, dtype=np.int64))
-
-        
-        return (
-            np.concatenate(all_data, axis=0),
-            np.concatenate(all_users, axis=0),
-            np.concatenate(all_cases, axis=0),
-            np.concatenate(all_tools, axis=0),
-            np.concatenate(all_data_type, axis=0)
-        )
-
+    
     def __getitem__(self, idx):
         
         data_path = self.data_paths[idx]
         data_df = pd.read_csv(data_path)
-        
-        
-        if self.transform:
-            data_df = self.transform(data_df)
         
         
         if isinstance(data_df, pd.DataFrame):

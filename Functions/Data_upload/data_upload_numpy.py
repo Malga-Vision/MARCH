@@ -154,7 +154,7 @@ def get_selection_config(user_input = None, case_input = None, tool_input = None
 def main():
     global_path = Path('/media/gabriele/My Passport')
 
-    dataset  = User_Case_Dataset_NumPy(global_path / "MaLGait_sync_paper" , goal = "test", phase = None, transform = None, preload = False)
+    dataset  = User_Case_Dataset_NumPy(global_path / "MaLGait_sync_paper")
 
     users, cases, tools, ids = get_selection_config()
     all_data, all_user, all_cases, all_tool, all_ids = variable_selection_numpy(dataset, users, cases, tools, ids)
