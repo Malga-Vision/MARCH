@@ -1,6 +1,6 @@
-<!-- <p align="center">
-  <img src="Figures/MoCA_logo(1).png" width="450" title="hover text">
-</p> -->
+<p align="center">
+  <img src="Figures/logo.png" width="450" title="hover text">
+</p>
 
 ## The MARCH dataset: Multi-modal learning for gait-based human analysis and authentication
 
@@ -18,6 +18,7 @@ An annotation is available, which includes the segmentation of single action ins
 
 
 The MARCH dataset is a comprehensive and rich multimodal dataset composed of inertial and video data. This dataset aims to provide a rich and diverse description of different walking patterns. It will be rich because it includes a large number of individuals of various ages and genders. It will be diverse as it incorporates data from multiple devices, and various clothing styles, ensuring an appropriate level of variability. 
+
 The dataset consists in 50 gender-balanced participants (26 males and 24 females), of age 26.8± 2.9 performing 7 different walks on a treadmill of 5 minutes each in indoor environment. Each user worn five sensors, four IMUs and one smartphone and two ZED cameras recorded the walk on each side. Additionally, we collected timestamps of all sensors simplifying the synchronisation across all devises. In total we collected 474.1 GiB of data corresponding to 29.16 hours per sensor.
 
 MANCANO POSSIBILI APPLICAZIONI COME MOCA
@@ -31,7 +32,7 @@ MATLAB structures containing the MoCap streams are composed by the following fie
 The point of view of the video recordings is specified by the number at the end of each filename: "*_0.avi" for the lateral PoV, "*_1.avi" for a simulated egocentric PoV (the camera is placed above the head of the actor), "*_2.avi" for the frontal PoV.
 
 ### Available functions
-Loading and visualisation functions (both available in MATLAB and Python) allow users to access RGB and Kinematic streams.
+Loading and visualisation functions (both available in MATLAB and Python) allow users to access at inertial data.
 
 Functions "loadDataset" and "loadAction" allow the user to load and save the Cooking Actions Dataset in an easy-to-use data structure. 
 "loadAction" gives the user the possibility of loading only part of the Cooking Actions Dataset, as for instance an action, a marker, or an instance.
@@ -43,17 +44,14 @@ Syntax:
 - loadAction(folder, action, 'ALL', instance) returns a struct containing data of all markers at the specified instance of  the action.
 - loadAction(folder, action, marker, instance) returns a struct containing data of a single marker at the specified instance of the action.
 
-The function "segmentAction" extracts the instances of actions from the  MoCap streams. Same function can be used to segment the scenes in different actions.
+The function "segmentAction" extracts the instances of actions from the MoCap streams. Same function can be used to segment the scenes in different actions.
 
 Three types of visualisation functions are available:
 - "visualiseAction", for 3D plot of each marker's trajectory 
 - "visualiseSkeleton", for a simulation of the arm executing the complete action using MoCap data
 - "initSynch" and "synchronizedView" for a joint view of RGB and Kinematic data.
 	
-All the functions provided can be used also on the testing scenes in /data/mocap/scenes.
 
-Type help "name of the function" in the Command Window for more information on syntax and on how to use the functions.
-	
 REFERENCE
 =============
 Should you use this dataset in your publication please cite the following:
@@ -62,7 +60,7 @@ The MoCA dataset, kinematic and multi-view visual streams of fine-grained cookin
 E. Nicora, G. Goyal, N. Noceti, A. Vignolo, A. Sciutti, F. Odone
 Scientific Data 7 (1), 1-15
 
-Visit the <a href="https://sites.google.com/view/themocaproject/welcome">Dataset webpage</a> for further information.
+Visit the <a href=>Dataset webpage</a> for further information.
 
-Moca Dataset can be also downloaded at <a href="https://data.mendeley.com/datasets/95n9scp9zc">Mendeley Data</a>.
+Moca Dataset can be also downloaded at <a href=>Mendeley Data</a>.
 
