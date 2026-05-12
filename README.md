@@ -1,20 +1,26 @@
 <!-- <p align="center">
-  <img src="Images/MoCA_logo(1).png" width="450" title="hover text">
+  <img src="Figures/MoCA_logo(1).png" width="450" title="hover text">
 </p> -->
 
-## The MoCA dataset: kinematic and multi-view visual streams of fine-grained cooking actions
+## The MARCH dataset: Multi-modal learning for gait-based human analysis and authentication
 
 
 ### Description and motivations
-The Cooking Actions Dataset is a multimodal dataset in which we collect MoCap data and video sequences acquired from multiple views of upper body actions in a cooking scenario. 
-It has been collected with the specific purpose of investigating view-invariant action properties in both biological and artificial systems, and in this sense it may be of interest for multiple research communities in the cognitive and computational domains. Beside addressing classical action recognition tasks, the dataset enables research on different nuances of action understanding, from the segmentation of action primitives robust across different sensors and viewpoints, to the detection of actions categories depending on their dynamic evolution or the goal. 
+<!-- The MARCH dataset is a multimodal dataset in which we collect MoCap data and video sequences acquired from multiple views of upper body actions in a cooking scenario. 
+It has been collected with the specific purpose of investigating view-invariant action properties in both biological and artificial systems, and in this sense it may be of interest for multiple research communities in the cognitive and computational domains. Beside addressing classical action recognition tasks, the dataset enables research on different nuances of action understanding, from the segmentation of action primitives robust across different sensors and viewpoints, to the detection of actions categories depending on their dynamic evolution or the goal.  -->
 <!-- <p align="center">
-  <img src="Images/setting.jpg" width="450" title="hover text">
+  <img src="Figures/setting.jpg" width="450" title="hover text">
 </p> -->
 
-The dataset includes 20 cooking actions, involving either a single or both arms of the volunteer, some of them including tools which may require different forces. Three different view-points have been considered for the acquisitions, i.e. lateral, egocentric, and frontal. For each action a training and a test sequence is available, each containing, on average, 25 repetitions of the action. Furthermore, acquisitions of more structured activities are included, in which the actions are performed in sequence for a final, more complex goal. 
+<!-- The dataset includes 20 cooking actions, involving either a single or both arms of the volunteer, some of them including tools which may require different forces. Three different view-points have been considered for the acquisitions, i.e. lateral, egocentric, and frontal. For each action a training and a test sequence is available, each containing, on average, 25 repetitions of the action. Furthermore, acquisitions of more structured activities are included, in which the actions are performed in sequence for a final, more complex goal. 
 
-An annotation is available, which includes the segmentation of single action instances in terms of time instants in the MoCap reference frame. A function then allows to map the time instants on the corresponding frame in the video sequences. In addition, functionalities to load, segment, and visualize the data are also provided in Python and Matlab.
+An annotation is available, which includes the segmentation of single action instances in terms of time instants in the MoCap reference frame. A function then allows to map the time instants on the corresponding frame in the video sequences. In addition, functionalities to load, segment, and visualize the data are also provided in Python and Matlab. -->
+
+
+The MARCH dataset is a comprehensive and rich multimodal dataset composed of inertial and video data. This dataset aims to provide a rich and diverse description of different walking patterns. It will be rich because it includes a large number of individuals of various ages and genders. It will be diverse as it incorporates data from multiple devices, and various clothing styles, ensuring an appropriate level of variability. 
+The dataset consists in 50 gender-balanced participants (26 males and 24 females), of age 26.8± 2.9 performing 7 different walks on a treadmill of 5 minutes each in indoor environment. Each user worn five sensors, four IMUs and one smartphone and two ZED cameras recorded the walk on each side. Additionally, we collected timestamps of all sensors simplifying the synchronisation across all devises. In total we collected 474.1 GiB of data corresponding to 29.16 hours per sensor.
+
+MANCANO POSSIBILI APPLICAZIONI COME MOCA
 
 ### Technical information
 MATLAB structures containing the MoCap streams are composed by the following fields:
