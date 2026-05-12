@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Figures/logo.png" width="450" title="hover text">
+  <img src="Figures/logo.png" width="550" title="hover text">
 </p>
 
 ## The MARCH dataset: Multi-modal learning for gait-based human analysis and authentication
