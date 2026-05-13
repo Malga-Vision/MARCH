@@ -24,33 +24,47 @@ The dataset consists in 50 gender-balanced participants (26 males and 24 females
 MANCANO POSSIBILI APPLICAZIONI COME MOCA
 
 ### Technical information
-MATLAB structures containing the MoCap streams are composed by the following fields:
+<!-- MATLAB structures containing the MoCap streams are composed by the following fields:
 - Shoulder, elbow, wrist, palm, index finger and little finger complete streams, without any filtering; 
 - index, array containing segmentation indices, this is the information used in segmentAction to separate the streams;
 - labels (present only in the scenes structures), array containing the labels of the actions that succeed one another in the scene (in temporal order). True labels include also \enquote{pause}, a moment in the sequence in which the actor does not move;
 
-The point of view of the video recordings is specified by the number at the end of each filename: "*_0.avi" for the lateral PoV, "*_1.avi" for a simulated egocentric PoV (the camera is placed above the head of the actor), "*_2.avi" for the frontal PoV.
+The point of view of the video recordings is specified by the number at the end of each filename: "*_0.avi" for the lateral PoV, "*_1.avi" for a simulated egocentric PoV (the camera is placed above the head of the actor), "*_2.avi" for the frontal PoV. -->
+
+VEDIAMO CHE METTERCI
 
 ### Available functions
-Loading and visualisation functions (both available in MATLAB and Python) allow users to access at inertial data.
+Loading and visualisation scripts allow users to access, filter, and plot the MARCH inertial data.
 
-Functions "loadDataset" and "loadAction" allow the user to load and save the Cooking Actions Dataset in an easy-to-use data structure. 
-"loadAction" gives the user the possibility of loading only part of the Cooking Actions Dataset, as for instance an action, a marker, or an instance.
+The data loading functions (get_selection_config and variable_selection_numpy) allow the user to load specific subsets of the MARCH dataset into easy-to-use NumPy arrays. You can filter the data by users, cases, tools (IMU vs. Smartphone), and specific sensor IDs.
 
-Syntax:
-- loadDataset(folder, 'training') and loadDataset(folder, 'test') load MoCap data of all actions for the specified set.
-- loadAction(folder, action) and loadAction(folder, action, 'ALL') return a struct containing data of all markers for the specified action. Notice that "action" is a string that can be derived from the names of the data files. Example: carrot_tr.mat -> carrot
-- loadAction(folder, action, marker) returns a struct containing data related to the specified action and limited to the specified marker  
-- loadAction(folder, action, 'ALL', instance) returns a struct containing data of all markers at the specified instance of  the action.
-- loadAction(folder, action, marker, instance) returns a struct containing data of a single marker at the specified instance of the action.
+Syntax & Data Loading:
 
-The function "segmentAction" extracts the instances of actions from the MoCap streams. Same function can be used to segment the scenes in different actions.
+    get_selection_config(user_input, case_input, tool_input, id_input) parses your selection criteria. If arguments are omitted, it prompts the user for inputs interactively via the console.
 
-Three types of visualisation functions are available:
-- "visualiseAction", for 3D plot of each marker's trajectory 
-- "visualiseSkeleton", for a simulation of the arm executing the complete action using MoCap data
-- "initSynch" and "synchronizedView" for a joint view of RGB and Kinematic data.
-	
+        Users: Accepts 'all' (users 0-49) or specific IDs (e.g., 1 2 5).
+
+        Cases: Accepts 'all' (cases 1-7) or specific cases (e.g., 1 3).
+
+        Tools: Accepts 'all', 'IMU' (Tool 0), or 'Samsung' (Tool 1).
+
+        IDs: Specifies sensor IDs (e.g., IMU 0 1 2 3 or Samsung 0).
+
+    variable_selection_numpy(dataset, users, cases, tools, ids) returns a tuple of concatenated NumPy arrays containing the requested data block alongside its corresponding labels: (data, user_labels, case_labels, tool_labels, ids).
+
+Data Visualisation:
+
+The repository includes a dedicated visualisation script (data_visualisation.py) to easily inspect the synchronized IMU streams using Matplotlib. By default, it is configured to evaluate a specific time window (start and end frames) for a specific user and case.
+
+The script generates a comprehensive 3x3 grid plot that provides a joint view of the 3D components (X, Y, and Z axes) for:
+
+    Gravity (g_x, g_y, g_z)
+
+    Linear Acceleration (a_x, a_y, a_z)
+
+    Angular Velocity (w_x, w_y, w_z)
+
+By default, the script compares the left and right ankle sensors (IMU 1 and IMU 3) within the same axes to easily observe gait symmetry and synchronisation.
 
 REFERENCE
 =============
