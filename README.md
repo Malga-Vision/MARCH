@@ -110,11 +110,5 @@ REFERENCE
 =============
 Should you use this dataset in your publication please cite the following:
 
-The MoCA dataset, kinematic and multi-view visual streams of fine-grained cooking actions
-E. Nicora, G. Goyal, N. Noceti, A. Vignolo, A. Sciutti, F. Odone
-Scientific Data 7 (1), 1-15
-
-Visit the <a href=>Dataset webpage</a> for further information.
-
 Moca Dataset can be also downloaded at <a href=>Mendeley Data</a>.
 
