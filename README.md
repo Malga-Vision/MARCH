@@ -63,15 +63,15 @@ To facilitate segmentation and machine learning training, the data is paired wit
 
     tool_label [0 or 1]: Identifies the hardware system used for the capture:
 
-        0 = Wearable IMUs
+      0 = Wearable IMUs
 
-        1 = Smartphone (Sensor Logger App)
+      1 = Smartphone (Sensor Logger App)
 
     data_id: Specifies the exact spatial location or identifier of the sensor:
 
-        If tool_label == 0 (IMUs): Evaluates to 0, 1, 2, or 3 (imu_0 through imu_3).
+      If tool_label == 0 (IMUs): Evaluates to 0, 1, 2, or 3 (imu_0 through imu_3).
 
-        If tool_label == 1 (Smartphone): Evaluates to 0.
+      If tool_label == 1 (Smartphone): Evaluates to 0.
 
 ### Available functions
 Loading and visualisation scripts allow users to access, filter, and plot the MARCH inertial data.
