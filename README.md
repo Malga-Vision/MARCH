@@ -82,13 +82,13 @@ Syntax & Data Loading:
 
   get_selection_config(user_input, case_input, tool_input, id_input) parses your selection criteria. If arguments are omitted, it prompts the user for inputs interactively via the console.
 
-      Users: Accepts 'all' (users 0-49) or specific IDs (e.g., 1 2 5).
+    Users: Accepts 'all' (users 0-49) or specific IDs (e.g., 1 2 5).
 
-      Cases: Accepts 'all' (cases 1-7) or specific cases (e.g., 1 3).
+    Cases: Accepts 'all' (cases 1-7) or specific cases (e.g., 1 3).
 
-      Tools: Accepts 'all', 'IMU' (Tool 0), or 'Samsung' (Tool 1).
+    Tools: Accepts 'all', 'IMU' (Tool 0), or 'Samsung' (Tool 1).
 
-      IDs: Specifies sensor IDs (e.g., IMU 0 1 2 3 or Samsung 0).
+    IDs: Specifies sensor IDs (e.g., IMU 0 1 2 3 or Samsung 0).
 
   variable_selection_numpy(dataset, users, cases, tools, ids) returns a tuple of concatenated NumPy arrays containing the requested data block alongside its corresponding labels: (data, user_labels, case_labels, tool_labels, ids).
 
