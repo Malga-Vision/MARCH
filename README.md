@@ -23,15 +23,55 @@ The dataset consists in 50 gender-balanced participants (26 males and 24 females
 
 MANCANO POSSIBILI APPLICAZIONI COME MOCA
 
-### Technical information
-<!-- MATLAB structures containing the MoCap streams are composed by the following fields:
-- Shoulder, elbow, wrist, palm, index finger and little finger complete streams, without any filtering; 
-- index, array containing segmentation indices, this is the information used in segmentAction to separate the streams;
-- labels (present only in the scenes structures), array containing the labels of the actions that succeed one another in the scene (in temporal order). True labels include also \enquote{pause}, a moment in the sequence in which the actor does not move;
+### Technical information: NumPy Data Structure
 
-The point of view of the video recordings is specified by the number at the end of each filename: "*_0.avi" for the lateral PoV, "*_1.avi" for a simulated egocentric PoV (the camera is placed above the head of the actor), "*_2.avi" for the frontal PoV. -->
+The User_Case_Dataset_NumPy class parses the dataset's directory tree (root_dir / user / case / instrument / data_file) and converts the raw CSV files into structured NumPy arrays.
 
-VEDIAMO CHE METTERCI
+Calling the dataset via its index (dataset[idx]) returns a tuple containing the sensor data matrix alongside its four corresponding identifying labels: (data_array, user_label, case_label, tool_label, data_id).
+
+1. The Data Matrix (data_array)
+Each returned data_array is a 2D NumPy array where rows represent continuous time samples and the 11 columns contain the specific kinematic values. The columns are structured exactly as follows:
+
+    Col 0: timestamp_ns (System timestamp in nanoseconds)
+
+    Col 1: wx (Angular velocity X)
+
+    Col 2: wy (Angular velocity Y)
+
+    Col 3: wz (Angular velocity Z)
+
+    Col 4: ax (Linear acceleration X)
+
+    Col 5: ay (Linear acceleration Y)
+
+    Col 6: az (Linear acceleration Z)
+
+    Col 7: gx (Gravity X)
+
+    Col 8: gy (Gravity Y)
+
+    Col 9: gz (Gravity Z)
+
+    Col 10: time_ms_loc (Local time in milliseconds, used for synchronized plotting)
+
+2. Label Encodings
+To facilitate segmentation and machine learning training, the data is paired with integer-encoded labels. These guarantee you always know the exact context of the data_array:
+
+    user_label [0 to n]: Identifies the specific subject performing the trial.
+
+    case_label [1 to 7]: Identifies the specific gait scenario or testing condition being executed.
+
+    tool_label [0 or 1]: Identifies the hardware system used for the capture:
+
+        0 = Wearable IMUs
+
+        1 = Smartphone (Sensor Logger App)
+
+    data_id: Specifies the exact spatial location or identifier of the sensor:
+
+        If tool_label == 0 (IMUs): Evaluates to 0, 1, 2, or 3 (imu_0 through imu_3).
+
+        If tool_label == 1 (Smartphone): Evaluates to 0.
 
 ### Available functions
 Loading and visualisation scripts allow users to access, filter, and plot the MARCH inertial data.
