@@ -16,7 +16,7 @@ The dataset consists in 50 gender-balanced participants (26 males and 24 females
 </p>
 
 <p align="center">
-  <img src="Figures/position.jpg" width="550" title="hover text">
+  <img src="Figures/position.png" width="550" title="hover text">
 </p>
 
 
