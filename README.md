@@ -9,17 +9,25 @@
 
 The MARCH dataset is a comprehensive and rich multimodal dataset composed of inertial and video data. This dataset aims to provide a rich and diverse description of different walking patterns. It will be rich because it includes a large number of individuals of various ages and genders. It will be diverse as it incorporates data from multiple devices, and various clothing styles, ensuring an appropriate level of variability. 
 
-The dataset consists in 50 gender-balanced participants (26 males and 24 females), of age 26.8± 2.9 performing 7 different walks on a treadmill of 5 minutes each in indoor environment. Each user worn five sensors, four IMUs and one smartphone. Additionally, we collected timestamps of all sensors simplifying the synchronisation across all devises. In total we collected 474.1 GiB of data corresponding to 29.16 hours per sensor.
+The dataset consists in 50 gender-balanced participants (26 males and 24 females), of age 26.8± 2.9 performing 7 different walks on a treadmill of 5 minutes each in indoor environment. During the first two trials, the treadmill velocity was fixed at 2 km/h. In the third and fourth trials, participants chose a comfortable walking speed. For the fifth and sixth trials, the speed remained user-selected; however, a one-kilogram weight was fastened to the participant's left ankle to simulate an injury. The seventh and final trial followed a pre-programmed speed profile. Every 30 seconds, the velocity shifted between a minimum of 2 km/h and a maximum of 5 km/h according to the following sequence (in km/h): (2,4,3,4,3,5,4,2,5,3).
+
+Additionally, all even-numbered trials were conducted barefoot, while odd-numbered trials were performed with shoes. These conditions are summarised in the following Table.
 
 <p align="center">
   <img src="Figures/data.png" width="550" title="hover text">
-  <img src="Figures/position.png" width="550" title="hover text">
 </p>
+
+Each user worn five sensors, four IMUs and one smartphone.  Two IMUs were secured to the exterior of both ankles, while the remaining two were fastened to the exterior middle section of both thighs; all were held in place using Velcro straps. When the participant stood in a stationary position, the IMUs were oriented such that the x-axis was parallel to the leg (pointing downward), and the z-axis was parallel to the ground, pointing toward the inner part of the body. The y-axis was oriented according to the left-hand rule.
+
+The Samsung smartphone was placed in the back-left pocket of the trousers with the y-axis oriented perpendicularly to the ground, the z-axis pointing toward the body, and the x-axis oriented according to the right-hand rule. 
+
+The figure illustrates the IMU positions (red circles) and the Samsung smartphone placement (yellow circle)
 
 <p align="center">
   <img src="Figures/position.png" width="550" title="hover text">
 </p>
 
+Additionally, we collected timestamps of all sensors simplifying the synchronisation across all devises. In total we collected 474.1 GiB of data corresponding to 29.16 hours per sensor.
 
 
 MANCANO POSSIBILI APPLICAZIONI COME MOCA
