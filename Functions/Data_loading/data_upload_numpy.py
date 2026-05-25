@@ -5,9 +5,9 @@ import numpy as np
 from utility import get_selection_config, variable_selection_numpy
 
 def main():
-    global_path = Path('/media/gabriele/My Passport')
+    global_path = Path('../../Data/')
 
-    dataset  = User_Case_Dataset_NumPy(global_path / "MaLGait_sync_paper")
+    dataset  = User_Case_Dataset_NumPy(global_path)
 
     users, cases, tools, ids = get_selection_config()
     all_data, all_user, all_cases, all_tool, all_ids = variable_selection_numpy(dataset, users, cases, tools, ids)
