@@ -23,13 +23,10 @@ The Samsung smartphone was placed in the back-left pocket of the trousers with t
 
 The figure illustrates the IMU positions (red circles) and the Samsung smartphone placement (yellow circle)
 
-<div align="center" style="height:450px; overflow:hidden;">
-  <img 
-    src="Figures/position.png"
-    width="550"
-    style="transform: translateY(-80px);"
-  >
-</div>
+<p align="center">
+  <img src="Figures/position_cropped.png" width="550" title="hover text">
+</p>
+
 Additionally, we collected timestamps of all sensors simplifying the synchronisation across all devises. In total we collected 474.1 GiB of data corresponding to 29.16 hours per sensor.
 
 
