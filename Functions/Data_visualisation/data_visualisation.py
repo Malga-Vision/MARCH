@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.gridspec import GridSpec
 
-path = Path('/media/gabriele/My Passport/MaLGait_sync_paper/user_00_sync/case_1')
+path = Path('../../Data/user_00_sync/case_1')
 
 imu_1 = pd.read_csv(path / "IMUs/imu_1_data_sync.csv")
 # imu_0 = pd.read_csv(path / "IMUs/imu_0_data_sync.csv")
