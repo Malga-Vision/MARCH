@@ -27,7 +27,6 @@ The figure illustrates the IMU positions (red circles) and the Samsung smartphon
   <img 
     src="Figures/position.png"
     width="550"
-    style="object-fit: cover; object-position: center; clip-path: inset(5cm 3cm 2cm 3cm);"
   >
 </p>
 <!-- 
