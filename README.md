@@ -23,7 +23,7 @@ The Samsung smartphone was placed in the back-left pocket of the trousers with t
 
 The figure illustrates the IMU positions (red circles) and the Samsung smartphone placement (yellow circle)
 
-<p align="center" style="overflow:hidden; height:420px;">
+<p align="center" style="overflow:hidden; height:1000px;">
   <img 
     src="Figures/position.png"
     width="550"
