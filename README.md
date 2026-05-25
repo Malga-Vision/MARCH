@@ -29,9 +29,6 @@ The figure illustrates the IMU positions (red circles) and the Samsung smartphon
 
 Additionally, we collected timestamps of all sensors simplifying the synchronisation across all devises. In total we collected 474.1 GiB of data corresponding to 29.16 hours per sensor.
 
-
-MANCANO POSSIBILI APPLICAZIONI COME MOCA
-
 ### Technical information: NumPy Data Structure
 
 The User_Case_Dataset_NumPy class parses the dataset's directory tree (root_dir / user / case / instrument / data_file) and converts the raw CSV files into structured NumPy arrays.
