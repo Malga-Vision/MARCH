@@ -27,7 +27,7 @@ The figure illustrates the IMU positions (red circles) and the Samsung smartphon
   <img src="Figures/position_cropped.png" width="550" title="hover text">
 </p>
 
-Additionally, we collected timestamps of all sensors simplifying the synchronisation across all devises. In total we collected 474.1 GiB of data corresponding to 29.16 hours per sensor.
+Additionally, we collected timestamps of all sensors simplifying the synchronisation across all devises. In total we collected 29.16 hours of data per sensor.
 
 ### Technical information: NumPy Data Structure
 
