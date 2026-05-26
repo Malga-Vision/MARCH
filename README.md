@@ -22,7 +22,7 @@ Each participant wore five sensors: four IMUs and one smartphone. Two IMUs were 
 
 The Samsung smartphone was placed in the back-left trouser pocket with the y-axis perpendicular to the ground, the z-axis pointing toward the body, and the x-axis oriented according to the right-hand rule.
 
-The figure illustrates the IMU positions (red circles) and the Samsung smartphone placement (yellow circle).
+The figure illustrates the IMU positions (red circles), the Samsung smartphone placement (yellow circle) and the treadmill used.
 
 <p align="center">
   <img src="Figures/position_cropped.png" width="550" alt="Sensor positions">
