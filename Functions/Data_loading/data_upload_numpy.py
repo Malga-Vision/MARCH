@@ -1,18 +1,28 @@
 from pathlib import Path
 
-from dataset_numpy import User_Case_Dataset_NumPy
 import numpy as np
+
+from dataset_numpy import User_Case_Dataset_NumPy
 from utility import get_selection_config, variable_selection_numpy
 
-def main():
-    global_path = Path('../../Data/')
 
-    dataset  = User_Case_Dataset_NumPy(global_path)
+def main():
+    repo_root = Path(__file__).resolve().parents[2]
+    data_path = repo_root / "Data"
+
+    dataset = User_Case_Dataset_NumPy(data_path)
 
     users, cases, tools, ids = get_selection_config()
     all_data, all_user, all_cases, all_tool, all_ids = variable_selection_numpy(dataset, users, cases, tools, ids)
-    print(all_data)
+    if all_data is None:
+        return
 
-    
+    print(f"Loaded data shape: {all_data.shape}")
+    print(f"Users: {np.unique(all_user).tolist()}")
+    print(f"Cases: {np.unique(all_cases).tolist()}")
+    print(f"Tools: {np.unique(all_tool).tolist()}")
+    print(f"Sensor IDs: {np.unique(all_ids).tolist()}")
+
+
 if __name__ == "__main__":
     main()
