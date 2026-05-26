@@ -11,7 +11,6 @@ def main():
 
     users, cases, tools, ids = get_selection_config()
     all_data, all_user, all_cases, all_tool, all_ids = variable_selection_numpy(dataset, users, cases, tools, ids)
-    print(cases)
     print(all_data)
 
     
