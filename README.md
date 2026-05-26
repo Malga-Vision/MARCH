@@ -40,6 +40,17 @@ cd MARCH
 python3 -m pip install -r requirements.txt
 ```
 
+### Aggiungere Codex Web
+
+Se vuoi usare Codex Web su questo repository:
+
+1. pubblica/forka il progetto su GitHub (se è solo locale);
+2. apri la repository da interfaccia Codex Web;
+3. seleziona il repository `Malga-Vision/MARCH` come sorgente del contesto;
+4. avvia una nuova sessione e descrivi il task da eseguire.
+
+Non sono richieste modifiche al codice del progetto per abilitare Codex Web: è una configurazione lato piattaforma.
+
 The raw inertial data is stored under `Data/` with this directory structure:
 
 ```text
