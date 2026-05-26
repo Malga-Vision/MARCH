@@ -18,7 +18,7 @@ def variable_selection_numpy(dataset, user_selected, case_selected, tool_selecte
         
        
         u = dataset.user_labels[idx]
-        c = dataset.case_labels[idx] + 1 
+        c = dataset.case_labels[idx] + 1
         t = dataset.tool_labels[idx]
         d_id = dataset.data_ids[idx]
 
