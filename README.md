@@ -39,7 +39,7 @@ git clone https://github.com/Malga-Vision/MARCH.git
 cd MARCH
 python3 -m pip install -r requirements.txt
 ```
-
+NON MI PIACE QUI 
 Each `Data/user_<id>_sync/case_<n>/ZED_2/` folder contains a 10-second example
 clip recorded with the ZED camera. The participant shown in the video has been
 anonymized for privacy.
