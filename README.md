@@ -30,6 +30,13 @@ The figure illustrates the IMU positions (red circles), the Smartphone placement
 
 Simultaneously, two ZED cameras, positioned on opposite sides of the participant, recorded video. A 10-second example clip from the second ZED camera is available. The participant shown in the video has been anonymized for privacy.
 
+The figure shows the positions of the two ZED cameras during data acquisition.
+
+<p align="center">
+  <img src="Figures/setup.png" width="550" alt="Sensor positions">
+</p>
+
+
 Timestamps were collected for all sensors to simplify synchronization across devices. In total, the dataset contains 29.16 hours of data per sensor.
 
 ### Getting Started
