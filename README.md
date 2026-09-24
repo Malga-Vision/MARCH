@@ -18,15 +18,17 @@ All even-numbered trials were conducted barefoot, while odd-numbered trials were
   <img src="Figures/data.png" width="550" alt="MARCH trial conditions">
 </p>
 
-Each participant wore five sensors: four IMUs and one smartphone. Two IMUs were secured to the exterior of both ankles, while the remaining two were fastened to the exterior middle section of both thighs using Velcro straps. When the participant stood still, the IMUs were oriented with the x-axis parallel to the leg and pointing downward, the z-axis parallel to the ground and pointing toward the inner part of the body, and the y-axis oriented according to the left-hand rule.
+Each participant wore five sensors: four IMUs and one smartphone. Two IMUs were secured to the exterior of both ankles, while the remaining two were fastened to the exterior middle section of both thighs using Velcro straps. When the participant stood still, the IMUs were oriented with the x-axis parallel to the leg and pointing downward, the z-axis parallel to the ground and pointing toward the inner part of the body, and the y-axis oriented according to the left-hand rule. 
 
-The Samsung smartphone was placed in the back-left trouser pocket with the y-axis perpendicular to the ground, the z-axis pointing toward the body, and the x-axis oriented according to the right-hand rule.
+The Smartphone was placed in the back-left trouser pocket with the y-axis perpendicular to the ground, the z-axis pointing toward the body, and the x-axis oriented according to the right-hand rule.
 
-The figure illustrates the IMU positions (red circles), the Samsung smartphone placement (yellow circle) and the treadmill used.
+The figure illustrates the IMU positions (red circles), the Smartphone placement (yellow circle) and the treadmill used.
 
 <p align="center">
   <img src="Figures/position_cropped.png" width="550" alt="Sensor positions">
 </p>
+
+Simultaneously, two ZED cameras, positioned on opposite sides of the participant, recorded video. A 10-second example clip from the second ZED camera is available. The participant shown in the video has been anonymized for privacy.
 
 Timestamps were collected for all sensors to simplify synchronization across devices. In total, the dataset contains 29.16 hours of data per sensor.
 
@@ -38,19 +40,6 @@ Clone the repository and install the dependencies. Python 3.8+ is recommended.
 git clone https://github.com/Malga-Vision/MARCH.git
 cd MARCH
 python3 -m pip install -r requirements.txt
-```
-NON MI PIACE QUI 
-Each `Data/user_<id>_sync/case_<n>/ZED_2/` folder contains a 10-second example
-clip recorded with the ZED camera. The participant shown in the video has been
-anonymized for privacy.
-
-The synchronized data is stored under `Data/` with this directory structure:
-
-```text
-Data/user_<id>_sync/case_<n>/
-├── IMUs/<sensor>.csv
-├── Smartphone/Smartphone_sync.csv
-└── ZED_2/1080_2_right_sync.mp4
 ```
 
 ### Loading Data
