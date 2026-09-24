@@ -43,7 +43,7 @@ python3 -m pip install -r requirements.txt
 The raw inertial data is stored under `Data/` with this directory structure:
 
 ```text
-Data/user_<id>_sync/case_<n>/<IMUs|Samsung>/<sensor>.csv
+Data/user_<id>_sync/case_<n>/<IMUs|Smartphone>/<sensor>.csv
 ```
 
 ### Loading Data
@@ -54,13 +54,13 @@ Run the loading script from any directory:
 python3 Functions/Data_loading/data_upload_numpy.py
 ```
 
-The script interactively prompts for users, cases, tool, and sensor IDs. Example session that loads IMU 1 and IMU 3 of user 0, case 1:
+The script interactively prompts for users, cases, tool, and sensor IDs. Example session that loads IMU RA and IMU LA of user 0, case 1:
 
 ```text
 Inserire user (or 'all'): 0
 Inserire case (or 'all'): 1
-Inserire tool (all, IMU, Samsung): IMU
-Quali IMUs (es. 0 1 2 3): 1 3
+Inserire tool (all, IMU, Smartphone): IMU
+Quali IMUs (es. RL RA LL LA): RA LA
 ```
 
 To bypass the prompts, call `get_selection_config(...)` and `variable_selection_numpy(...)` programmatically with the same arguments.
@@ -73,7 +73,7 @@ Run the visualization script from any directory:
 python3 Functions/Data_visualisation/data_visualisation.py
 ```
 
-By default, the script reads `Data/user_00_sync/case_1`, compares IMU 1 and IMU 3, and writes `plot.png` next to the script.
+By default, the script reads `Data/user_00_sync/case_1`, compares IMU RA and IMU LA, and writes `plot.png` next to the script.
 
 ### Technical Information: NumPy Data Structure
 
@@ -111,8 +111,8 @@ Label encodings:
 | --- | --- | --- |
 | `user_label` | `0` to `49` | Participant ID |
 | `case_label` | `1` to `7` | Gait scenario / trial condition |
-| `tool_label` | `0` or `1` | `0 = IMUs`, `1 = Samsung smartphone` |
-| `data_id` | `0` to `3` for IMUs, `0` for Samsung | Sensor location or device ID |
+| `tool_label` | `0` or `1` | `0 = IMUs`, `1 = Smartphone` |
+| `data_id` | `0` to `3` for IMUs, `0` for Smartphone | Sensor location or device ID |
 
 ### Available Functions
 
@@ -120,8 +120,8 @@ Label encodings:
 
 - Users: `'all'` for users `0-49`, or specific IDs such as `1 2 5`.
 - Cases: `'all'` for cases `1-7`, or specific cases such as `1 3`.
-- Tools: `'all'`, `'IMU'`, or `'Samsung'`.
-- IDs: IMU IDs such as `0 1 2 3`; Samsung uses ID `0`.
+- Tools: `'all'`, `'IMU'`, or `'Smartphone'`.
+- IDs: IMU IDs such as `RL RA LL LA`; Smartphone uses ID `0`.
 
 `variable_selection_numpy(dataset, users, cases, tools, ids)` returns concatenated NumPy arrays:
 

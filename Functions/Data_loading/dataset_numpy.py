@@ -11,14 +11,14 @@ class User_Case_Dataset_NumPy:
         case_labels = [1, ..., 7] case type
         tool_labels = [0, 1]
             tool_labels == 0 -> IMUs
-            tool_labels == 1 -> Samsung smartphone
+            tool_labels == 1 -> Smartphone
         
         for tool_labels == 0:
             data_id = [0, 1, 2, 3]
-            data_id[0] == imu_0
-            data_id[1] == imu_1
-            data_id[2] == imu_2
-            data_id[3] == imu_3
+            data_id[0] == IMU RL
+            data_id[1] == IMU RA
+            data_id[2] == IMU LL
+            data_id[3] == IMU LA
         
         for tool_labels == 1: data_id = [0]
 
@@ -49,18 +49,22 @@ class User_Case_Dataset_NumPy:
 
     TOOL_LABELS = {
         "IMUs": 0,
-        "Samsung": 1,
+        "Smartphone": 1,
     }
 
     SENSOR_IDS = {
         "IMUs": {
+            "IMU_RL_data_sync.csv": 0,
+            "IMU_RA_data_sync.csv": 1,
+            "IMU_LL_data_sync.csv": 2,
+            "IMU_LA_data_sync.csv": 3,
             "imu_0_data_sync.csv": 0,
             "imu_1_data_sync.csv": 1,
             "imu_2_data_sync.csv": 2,
             "imu_3_data_sync.csv": 3,
         },
-        "Samsung": {
-            "Samsung_sync.csv": 0,
+        "Smartphone": {
+            "Smartphone_sync.csv": 0,
         },
     }
 
@@ -122,9 +126,12 @@ class User_Case_Dataset_NumPy:
 
                     sensor_ids = self.SENSOR_IDS[tool_name]
                     data_files = sorted(
-                        path.name
-                        for path in instrument_path.iterdir()
-                        if path.is_file() and path.name in sensor_ids
+                        (
+                            path.name
+                            for path in instrument_path.iterdir()
+                            if path.is_file() and path.name in sensor_ids
+                        ),
+                        key=lambda file_name: (sensor_ids[file_name], file_name),
                     )
 
                     self.instrument[user][case].append(tool_name)

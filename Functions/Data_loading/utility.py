@@ -4,6 +4,12 @@ import numpy as np
 VALID_USERS = range(50)
 VALID_CASES = range(1, 8)
 VALID_IMU_IDS = range(4)
+IMU_NAME_TO_ID = {
+    "RL": 0,
+    "RA": 1,
+    "LL": 2,
+    "LA": 3,
+}
 
 
 def variable_selection_numpy(dataset, user_selected, case_selected, tool_selected, ids_selected):
@@ -70,13 +76,13 @@ def get_selection_config(user_input=None, case_input=None, tool_input=None, id_i
         - Space-separated numbers (e.g., "1 3"): selects specific cases.
 
     tool_input : str or None
-        - 'all': selects all tools (IMUs, Samsung).
-        - 'IMU': selects tool 0. Requires 'id_input' to specify which IMUs (0, 1, 2, 3).
-        - 'Samsung': selects tool 1 and default ID 0.
+        - 'all': selects all tools (IMUs, Smartphone).
+        - 'IMU': selects tool 0. Requires 'id_input' to specify which IMUs (RL, RA, LL, LA).
+        - 'Smartphone': selects tool 1 and default ID 0.
 
     id_input : str or None
         - Only used if tool_input is 'IMU'.
-        - Space-separated numbers (e.g., "1 2") for specific IMU IDs.
+        - Space-separated names (e.g., "RA LA") for specific IMUs.
 
     Returns:
     --------
@@ -103,7 +109,7 @@ def get_selection_config(user_input=None, case_input=None, tool_input=None, id_i
     print(f"Cases selected: {cases}")
 
     if tool_input is None:
-        tool_input = input("Inserire tool (all, IMU, Samsung): ").strip()
+        tool_input = input("Inserire tool (all, IMU, Smartphone): ").strip()
 
     tool = str(tool_input).strip().lower()
     if tool == "all":
@@ -113,16 +119,16 @@ def get_selection_config(user_input=None, case_input=None, tool_input=None, id_i
         tools = [0]
 
         if id_input is None:
-            id_input = input("Quali IMUs (es. 0 1 2 3): ").strip()
+            id_input = input("Quali IMUs (es. RL RA LL LA): ").strip()
         if _is_all(id_input):
             ids = list(VALID_IMU_IDS)
         else:
-            ids = _parse_int_list(id_input, "IMU IDs", VALID_IMU_IDS)
-    elif tool in {"samsung", "smartphone", "phone"}:
+            ids = _parse_imu_names(id_input)
+    elif tool in {"smartphone", "phone"}:
         tools = [1]
         ids = [0]
     else:
-        raise ValueError("Invalid tool. Expected 'all', 'IMU', or 'Samsung'.")
+        raise ValueError("Invalid tool. Expected 'all', 'IMU', or 'Smartphone'.")
 
     print(f"Tools: {tools}, IDs: {ids}")
 
@@ -131,6 +137,28 @@ def get_selection_config(user_input=None, case_input=None, tool_input=None, id_i
 
 def _is_all(value):
     return isinstance(value, str) and value.strip().lower() == "all"
+
+
+def _parse_imu_names(value):
+    if isinstance(value, str):
+        names = value.replace(",", " ").split()
+    elif isinstance(value, (list, tuple, set)):
+        names = [str(item) for item in value]
+    else:
+        names = [str(value)]
+
+    if not names:
+        raise ValueError("No IMUs selected.")
+
+    normalized_names = [name.strip().upper() for name in names]
+    invalid = [name for name in normalized_names if name not in IMU_NAME_TO_ID]
+    if invalid:
+        valid_names = ", ".join(IMU_NAME_TO_ID)
+        raise ValueError(
+            f"Invalid IMU names: {invalid}. Expected one or more of: {valid_names}."
+        )
+
+    return [IMU_NAME_TO_ID[name] for name in normalized_names]
 
 
 def _parse_int_list(value, label, valid_values):

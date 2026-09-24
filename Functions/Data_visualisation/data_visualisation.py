@@ -12,8 +12,8 @@ OUTPUT_PATH = Path(__file__).resolve().with_name("plot.png")
 def main(user="user_00_sync", case="case_1", start=1000, end=1200):
     data_path = DATA_ROOT / user / case
 
-    imu_left = pd.read_csv(data_path / "IMUs" / "imu_1_data_sync.csv")
-    imu_right = pd.read_csv(data_path / "IMUs" / "imu_3_data_sync.csv")
+    imu_right = pd.read_csv(data_path / "IMUs" / "IMU_RA_data_sync.csv")
+    imu_left = pd.read_csv(data_path / "IMUs" / "IMU_LA_data_sync.csv")
 
     t = imu_left["time_ms_loc"].iloc[start:end]
     markersize = 2

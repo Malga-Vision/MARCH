@@ -17,6 +17,7 @@ env/
 
 # Generated figures
 Functions/Data_visualisation/plot.png
+Functions/Data_segmentation/segments_plot.png
 
 # OS/editor files
 .DS_Store
