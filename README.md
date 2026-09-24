@@ -40,10 +40,17 @@ cd MARCH
 python3 -m pip install -r requirements.txt
 ```
 
-The raw inertial data is stored under `Data/` with this directory structure:
+Each `Data/user_<id>_sync/case_<n>/ZED_2/` folder contains a 10-second example
+clip recorded with the ZED camera. The participant shown in the video has been
+anonymized for privacy.
+
+The synchronized data is stored under `Data/` with this directory structure:
 
 ```text
-Data/user_<id>_sync/case_<n>/<IMUs|Smartphone>/<sensor>.csv
+Data/user_<id>_sync/case_<n>/
+├── IMUs/<sensor>.csv
+├── Smartphone/Smartphone_sync.csv
+└── ZED_2/1080_2_right_sync.mp4
 ```
 
 ### Loading Data
