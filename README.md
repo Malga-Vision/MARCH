@@ -33,7 +33,7 @@ Simultaneously, two ZED cameras, positioned on opposite sides of the participant
 The figure shows the positions of the two ZED cameras during data acquisition.
 
 <p align="center">
-  <img src="Figures/setup.png" width="500" alt="Sensor positions">
+  <img src="Figures/setup.png" width="400" alt="Sensor positions">
 </p>
 
 
