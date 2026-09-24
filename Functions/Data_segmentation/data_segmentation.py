@@ -192,13 +192,15 @@ def resample_segment(segment, sample_count):
     return np.interp(target, source, segment)
 
 
-def segment_signal(data, boundaries, columns, sample_count=100, edge_cycles=1):
-    """Split a vector magnitude at timestamps and normalize each cycle length."""
+def segment_signal(
+    data, boundaries, columns, sample_count=100, edge_cycles=1, resample=True
+):
+    """Split a vector magnitude at timestamps, optionally resampling each cycle."""
 
     data = np.asarray(data)
     if data.ndim != 2 or data.shape[1] < 7:
         raise ValueError(f"Expected an N x 7 sensor array, received {data.shape}")
-    if sample_count < 2:
+    if resample and sample_count < 2:
         raise ValueError("sample_count must be at least 2")
     if edge_cycles < 0:
         raise ValueError("edge_cycles cannot be negative")
@@ -234,6 +236,9 @@ def segment_signal(data, boundaries, columns, sample_count=100, edge_cycles=1):
     if not complete_cycles:
         raise ValueError("No complete cycles could be segmented")
 
+    if not resample:
+        return complete_cycles
+
     return np.vstack(
         [resample_segment(segment, sample_count) for segment in complete_cycles]
     )
@@ -246,6 +251,7 @@ def collect_segments(
     sample_count=100,
     edge_cycles=1,
     indices_root=INDICES_ROOT,
+    resample=True,
 ):
     """Build acceleration and angular-velocity segments for every sensor."""
 
@@ -273,13 +279,31 @@ def collect_segments(
                 columns,
                 sample_count=sample_count,
                 edge_cycles=edge_cycles,
+                resample=resample,
             )
 
     return samples
 
 
-def plot_segments(samples, user, case):
-    """Plot normalized cycles and their average for each sensor."""
+def average_segments(segments):
+    """Average variable-length cycles without changing their sample spacing."""
+
+    segment_arrays = [np.asarray(segment, dtype=np.float64) for segment in segments]
+    if not segment_arrays:
+        raise ValueError("Cannot average an empty collection of segments")
+
+    maximum_length = max(segment.size for segment in segment_arrays)
+    padded_segments = np.full(
+        (len(segment_arrays), maximum_length), np.nan, dtype=np.float64
+    )
+    for index, segment in enumerate(segment_arrays):
+        padded_segments[index, : segment.size] = segment
+
+    return np.nanmean(padded_segments, axis=0)
+
+
+def plot_segments(samples, user, case, resample=True):
+    """Plot segmented cycles and their average for each sensor."""
 
     figure, axes = plt.subplots(
         len(SENSORS), len(SIGNALS), figsize=(20, 15), sharex=True, squeeze=False
@@ -288,25 +312,34 @@ def plot_segments(samples, user, case):
     for column, (signal_name, _, y_label) in enumerate(SIGNALS):
         for row, sensor in enumerate(SENSORS):
             axis = axes[row, column]
-            segment_matrix = samples[signal_name][sensor.title]
-            average_segment = np.nanmean(segment_matrix, axis=0)
+            segments = samples[signal_name][sensor.title]
 
-            for segment in segment_matrix:
-                axis.plot(segment, alpha=0.35, linewidth=0.8)
+            for index, segment in enumerate(segments):
+                label = (
+                    f"{len(segments)} raw cycles"
+                    if not resample and index == 0
+                    else None
+                )
+                axis.plot(segment, alpha=0.35, linewidth=0.8, label=label)
+
+            average_segment = average_segments(segments)
             axis.plot(
                 average_segment,
                 "--",
                 linewidth=2,
                 color="black",
-                label=f"average ({len(segment_matrix)} cycles)",
+                label=f"average ({len(segments)} cycles)",
             )
+
             axis.set_title(sensor.title, size=16)
-            axis.set_xlabel("Normalized time index", size=12)
+            x_label = "Normalized time index" if resample else "Sample index"
+            axis.set_xlabel(x_label, size=12)
             axis.set_ylabel(y_label, size=12)
             axis.grid(True, alpha=0.3)
             axis.legend()
 
-    figure.suptitle(f"Segments by sensor - user {user}, case {case}", size=20)
+    mode = "Resampled" if resample else "Raw"
+    figure.suptitle(f"{mode} segments by sensor - user {user}, case {case}", size=20)
     figure.tight_layout(rect=[0, 0, 1, 0.96])
     return figure
 
@@ -320,6 +353,7 @@ def main(
     indices_root=INDICES_ROOT,
     output_path=OUTPUT_PATH,
     show=True,
+    resample=True,
 ):
     dataset = User_Case_Dataset_NumPy(data_root)
     samples = collect_segments(
@@ -329,8 +363,11 @@ def main(
         sample_count=sample_count,
         edge_cycles=edge_cycles,
         indices_root=indices_root,
+        resample=resample,
     )
-    figure = plot_segments(samples, user=user, case=case)
+    figure = plot_segments(
+        samples, user=user, case=case, resample=resample
+    )
 
     if output_path is not None:
         output_path = Path(output_path)
@@ -348,7 +385,18 @@ def _parse_arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--user", type=int, default=7)
     parser.add_argument("--case", type=int, default=4, choices=range(1, 8))
-    parser.add_argument("--samples", type=int, default=100)
+    parser.add_argument(
+        "--samples",
+        type=int,
+        default=100,
+        help="samples per cycle when resampling (default: 100)",
+    )
+    parser.add_argument(
+        "--no-resample",
+        dest="resample",
+        action="store_false",
+        help="keep cycles at their original lengths",
+    )
     parser.add_argument(
         "--edge-cycles",
         type=int,
@@ -369,6 +417,7 @@ if __name__ == "__main__":
         case=arguments.case,
         sample_count=arguments.samples,
         edge_cycles=arguments.edge_cycles,
+        resample=arguments.resample,
         data_root=arguments.data_root,
         indices_root=arguments.indices_root,
         output_path=arguments.output,

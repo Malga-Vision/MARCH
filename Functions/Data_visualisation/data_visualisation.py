@@ -15,7 +15,8 @@ def main(user="user_00_sync", case="case_1", start=1000, end=1200):
     imu_right = pd.read_csv(data_path / "IMUs" / "IMU_RA_data_sync.csv")
     imu_left = pd.read_csv(data_path / "IMUs" / "IMU_LA_data_sync.csv")
 
-    t = imu_left["time_ms_loc"].iloc[start:end]
+    t_left = imu_left["time_ms_loc"].iloc[start:end]
+    t_right = imu_right["time_ms_loc"].iloc[start:end]
     markersize = 2
     linewidth = 0.5
 
@@ -47,7 +48,7 @@ def main(user="user_00_sync", case="case_1", start=1000, end=1200):
             ax = axes[row_idx, col_idx]
             _configure_axis(ax, ylabel, unit)
             ax.plot(
-                t,
+                t_rigth,
                 imu_right[column].iloc[start:end],
                 "-o",
                 markersize=markersize,
@@ -55,7 +56,7 @@ def main(user="user_00_sync", case="case_1", start=1000, end=1200):
                 label="right",
             )
             ax.plot(
-                t,
+                t_left,
                 imu_left[column].iloc[start:end],
                 "-o",
                 markersize=markersize,

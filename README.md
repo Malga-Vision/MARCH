@@ -48,10 +48,11 @@ Data/user_<id>_sync/case_<n>/<IMUs|Smartphone>/<sensor>.csv
 
 ### Loading Data
 
-Run the loading script from any directory:
+From the repository root, enter the data-loading directory and run the script:
 
 ```bash
-python3 Functions/Data_loading/data_upload_numpy.py
+cd Functions/Data_loading
+python3 data_upload_numpy.py
 ```
 
 The script interactively prompts for users, cases, tool, and sensor IDs. Example session that loads IMU RA and IMU LA of user 0, case 1:
@@ -67,13 +68,42 @@ To bypass the prompts, call `get_selection_config(...)` and `variable_selection_
 
 ### Visualizing IMU Signals
 
-Run the visualization script from any directory:
+From the repository root, enter the visualization directory and run the script:
 
 ```bash
-python3 Functions/Data_visualisation/data_visualisation.py
+cd Functions/Data_visualisation
+python3 data_visualisation.py
 ```
 
 By default, the script reads `Data/user_00_sync/case_1`, compares IMU RA and IMU LA, and writes `plot.png` next to the script.
+
+### Segmenting Data
+
+From the repository root, enter the segmentation directory and run the script:
+
+```bash
+cd Functions/Data_segmentation
+python3 data_segmentation.py
+```
+
+By default, each cycle is resampled to 100 samples. Use `--samples` to choose a
+different length, for example `--samples 200`.
+
+To keep every segmented cycle at its original length, disable resampling:
+
+```bash
+python3 data_segmentation.py --no-resample
+```
+
+In this mode, cycles are aligned by sample index for averaging. Shorter cycles are
+padded internally, so each point of the average uses the cycles available at that
+sample index without resampling the original signals.
+
+To save the segmentation plot without opening the plot window, run:
+
+```bash
+python3 data_segmentation.py --no-show
+```
 
 ### Technical Information: NumPy Data Structure
 
