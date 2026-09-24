@@ -138,7 +138,7 @@ Label encodings:
 | `user_label` | `0` to `49` | Participant ID |
 | `case_label` | `1` to `7` | Gait scenario / trial condition |
 | `tool_label` | `0` or `1` | `0 = IMUs`, `1 = Smartphone` |
-| `data_id` | `0` to `3` for IMUs, `0` for Smartphone | Sensor location or device ID |
+| `data_id` | `RL RA LL LA` for IMUs, `0` for Smartphone | Sensor location or device ID |
 
 ### Available Functions
 
