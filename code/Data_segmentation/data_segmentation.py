@@ -35,9 +35,9 @@ class SensorConfig:
 
 # The numeric IDs preserve the ordering used by the old imu_0 ... imu_3 files.
 SENSORS = (
-    SensorConfig("IMU RL", 0, 0, "indices_dictionary_segments_imu_1.pkl"),
+    SensorConfig("IMU RT", 0, 0, "indices_dictionary_segments_imu_1.pkl"),
     SensorConfig("IMU RA", 0, 1, "indices_dictionary_segments_imu_1.pkl"),
-    SensorConfig("IMU LL", 0, 2, "indices_dictionary_segments_imu_3.pkl"),
+    SensorConfig("IMU LT", 0, 2, "indices_dictionary_segments_imu_3.pkl"),
     SensorConfig("IMU LA", 0, 3, "indices_dictionary_segments_imu_3.pkl"),
     SensorConfig("Smartphone", 1, 0, "indices_dictionary_segments_imu_3.pkl"),
 )
