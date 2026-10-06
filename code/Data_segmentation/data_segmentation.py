@@ -14,7 +14,7 @@ import numpy as np
 
 FUNCTIONS_ROOT = Path(__file__).resolve().parents[1]
 REPO_ROOT = FUNCTIONS_ROOT.parent
-DATA_ROOT = REPO_ROOT / "Data"
+DATA_ROOT = REPO_ROOT / "data"
 INDICES_ROOT = Path(__file__).resolve().with_name("Indices")
 OUTPUT_PATH = Path(__file__).resolve().with_name("segments_plot.png")
 

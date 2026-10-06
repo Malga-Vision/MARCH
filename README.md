@@ -54,7 +54,7 @@ python3 -m pip install -r requirements.txt
 From the repository root, enter the data-loading directory and run the script:
 
 ```bash
-cd Functions/Data_loading
+cd code/Data_loading
 python3 data_upload_numpy.py
 ```
 
@@ -64,7 +64,7 @@ The script interactively prompts for users, cases, tool, and sensor IDs. Example
 Inserire user (or 'all'): 0
 Inserire case (or 'all'): 1
 Inserire tool (all, IMU, Smartphone): IMU
-Quali IMUs (es. RL RA LL LA): RA LA
+Quali IMUs (es. RT RA LT LA): RA LA
 ```
 
 To bypass the prompts, call `get_selection_config(...)` and `variable_selection_numpy(...)` programmatically with the same arguments.
@@ -74,18 +74,18 @@ To bypass the prompts, call `get_selection_config(...)` and `variable_selection_
 From the repository root, enter the visualization directory and run the script:
 
 ```bash
-cd Functions/Data_visualisation
+cd code/Data_visualisation
 python3 data_visualisation.py
 ```
 
-By default, the script reads `Data/user_00_sync/case_1`, compares IMU RA and IMU LA, and writes `plot.png` next to the script.
+By default, the script reads `data/user_00_sync/case_1`, compares IMU RA and IMU LA, and writes `plot.png` next to the script.
 
 ### Segmenting Data
 
 From the repository root, enter the segmentation directory and run the script:
 
 ```bash
-cd Functions/Data_segmentation
+cd code/Data_segmentation
 python3 data_segmentation.py
 ```
 
@@ -145,7 +145,7 @@ Label encodings:
 | `user_label` | `0` to `49` | Participant ID |
 | `case_label` | `1` to `7` | Gait scenario / trial condition |
 | `tool_label` | `0` or `1` | `0 = IMUs`, `1 = Smartphone` |
-| `data_id` | `RL RA LL LA` for IMUs, `0` for Smartphone | Sensor location or device ID |
+| `data_id` | `RT RA LT LA` for IMUs, `0` for Smartphone | Sensor location or device ID |
 
 ### Available Functions
 
@@ -154,7 +154,7 @@ Label encodings:
 - Users: `'all'` for users `0-49`, or specific IDs such as `1 2 5`.
 - Cases: `'all'` for cases `1-7`, or specific cases such as `1 3`.
 - Tools: `'all'`, `'IMU'`, or `'Smartphone'`.
-- IDs: IMU IDs such as `RL RA LL LA`; Smartphone uses ID `0`.
+- IDs: IMU IDs such as `RT RA LT LA`; Smartphone uses ID `0`.
 
 `variable_selection_numpy(dataset, users, cases, tools, ids)` returns concatenated NumPy arrays:
 

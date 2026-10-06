@@ -8,7 +8,7 @@ from utility import get_selection_config, variable_selection_numpy
 
 def main():
     repo_root = Path(__file__).resolve().parents[2]
-    data_path = repo_root / "Data"
+    data_path = repo_root / "data"
 
     dataset = User_Case_Dataset_NumPy(data_path)
 

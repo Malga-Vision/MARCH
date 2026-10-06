@@ -5,9 +5,9 @@ VALID_USERS = range(50)
 VALID_CASES = range(1, 8)
 VALID_IMU_IDS = range(4)
 IMU_NAME_TO_ID = {
-    "RL": 0,
+    "RT": 0,
     "RA": 1,
-    "LL": 2,
+    "LT": 2,
     "LA": 3,
 }
 

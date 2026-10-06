@@ -15,9 +15,9 @@ class User_Case_Dataset_NumPy:
         
         for tool_labels == 0:
             data_id = [0, 1, 2, 3]
-            data_id[0] == IMU RL
+            data_id[0] == IMU RT
             data_id[1] == IMU RA
-            data_id[2] == IMU LL
+            data_id[2] == IMU LT
             data_id[3] == IMU LA
         
         for tool_labels == 1: data_id = [0]
@@ -54,9 +54,9 @@ class User_Case_Dataset_NumPy:
 
     SENSOR_IDS = {
         "IMUs": {
-            "IMU_RL_data_sync.csv": 0,
+            "IMU_RT_data_sync.csv": 0,
             "IMU_RA_data_sync.csv": 1,
-            "IMU_LL_data_sync.csv": 2,
+            "IMU_LT_data_sync.csv": 2,
             "IMU_LA_data_sync.csv": 3,
             "imu_0_data_sync.csv": 0,
             "imu_1_data_sync.csv": 1,
