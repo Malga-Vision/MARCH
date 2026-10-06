@@ -48,7 +48,7 @@ def main(user="user_00_sync", case="case_1", start=1000, end=1200):
             ax = axes[row_idx, col_idx]
             _configure_axis(ax, ylabel, unit)
             ax.plot(
-                t_rigth,
+                t_right,
                 imu_right[column].iloc[start:end],
                 "-o",
                 markersize=markersize,

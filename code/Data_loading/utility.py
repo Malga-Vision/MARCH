@@ -77,7 +77,7 @@ def get_selection_config(user_input=None, case_input=None, tool_input=None, id_i
 
     tool_input : str or None
         - 'all': selects all tools (IMUs, Smartphone).
-        - 'IMU': selects tool 0. Requires 'id_input' to specify which IMUs (RL, RA, LL, LA).
+        - 'IMU': selects tool 0. Requires 'id_input' to specify which IMUs (RT, RA, LT, LA).
         - 'Smartphone': selects tool 1 and default ID 0.
 
     id_input : str or None
@@ -119,7 +119,7 @@ def get_selection_config(user_input=None, case_input=None, tool_input=None, id_i
         tools = [0]
 
         if id_input is None:
-            id_input = input("Quali IMUs (es. RL RA LL LA): ").strip()
+            id_input = input("Quali IMUs (es. RT RA LT LA): ").strip()
         if _is_all(id_input):
             ids = list(VALID_IMU_IDS)
         else:
