@@ -44,7 +44,7 @@ def g_segmenting(imu, user, case, distance):
 
 
 def main():
-    dir_path = Path("/media/gabriele/My Passport/MaLGait_sync")
+    dir_path = Path("../../data/")
 
     indices_dictionary = {}
 
@@ -74,7 +74,7 @@ def main():
 
             ind = []
     # print(indices_dictionary)
-    with open("/media/gabriele/My Passport/indices_dictionary_sync_data_segments_imu_1_all.pkl", "wb") as f:
+    with open("/Indicies/indices_dictionary_sync_data_segments_imu_1_all.pkl", "wb") as f:
         pickle.dump(indices_dictionary, f)
 
 if __name__=="__main__":
